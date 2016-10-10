@@ -1,4 +1,4 @@
-package com.cooksys.socket.assignment.model;
+package com.cooksys.ftd.assignments.socket.model;
 
 import javax.xml.bind.annotation.*;
 

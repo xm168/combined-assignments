@@ -1,10 +1,8 @@
-package com.cooksys.socket.assignment;
+package com.cooksys.ftd.assignments.socket;
 
-import com.cooksys.socket.assignment.model.Config;
+import com.cooksys.ftd.assignments.socket.model.Config;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 
 /**
  * Shared static methods to be used by both the {@link Client} and {@link Server} classes.
