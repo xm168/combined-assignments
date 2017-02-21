@@ -18,7 +18,7 @@ public class FizzBuzz {
 
     /**
      * Checks whether a given int `a` is evenly divisible by a given int `b` or not.
-     * For example, `divides(4, 2)` returns `true` and `divides(4, 3)` returns `false`.
+     * For example, `divides(4, 2)` returns `true` and `divides(4, 3)` returns `fa lse`.
      *
      * @param a the number to be divided
      * @param b the number to divide by
@@ -26,7 +26,16 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if( b==0 ){
+        throw new IllegalArgumentException();
+    	}else{
+    	if( a%b == 0){
+    		return true;
+    	}
+    	else{
+    		return false;
+    		}
+    	}
     }
 
     /**
@@ -41,6 +50,23 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
+    	
+    	if (n>0){
+    		if ( n%3 == 0 && n%5 == 0 ) {
+    			String message = ""+n + ": " + "FizzBuzz";
+    		return message;
+    		}else   	
+    	if ( n%3 == 0 ) {
+    		String message = ""+n + ": " + "Fizz";
+    		return message;
+    		}else
+    	if ( n%5 == 0 ) {
+    		String message = ""+n + ": " + "Buzz";
+    		return message;
+    		}
+    		String message = null;
+    		return message;
+    	}else
         throw new NotImplementedException();
     }
 
@@ -55,7 +81,33 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if(end < start)
+    		throw new IllegalArgumentException();
+    	
+    	int j = 0;
+    	   	String[] messages = new String[end-start];
+    	
+    	if (start <= end){
+    		for(int i = start; i < end; i++){
+    			if( i%3 == 0 && i%5 == 0 ){
+        		messages[j] = String.format("%d: FizzBuzz", i);
+        		j++;
+    			}else if(i%3==0){
+    				messages[j] = String.format("%d: Fizz", i);
+    				j++;
+    			}else if(i%5==0){
+    				messages[j] = String.format("%d: Buzz", i);
+    				j++;
+    			}
+        	}
+    	}
+    	
+    	String[] finalMsgs = new String[j];
+    	
+    	for(int i=0; i<j; i++){
+    		finalMsgs[i] = messages[i];
+    	}
+    	return finalMsgs;
     }
 
     /**
