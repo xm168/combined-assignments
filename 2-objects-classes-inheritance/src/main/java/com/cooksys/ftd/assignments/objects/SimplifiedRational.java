@@ -1,8 +1,12 @@
 package com.cooksys.ftd.assignments.objects;
 
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SimplifiedRational implements IRational {
+	
+	private int num, dem;
+
     /**
      * Determines the greatest common denominator for the given values
      *
@@ -33,7 +37,16 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     public static int[] simplify(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	
+    	if(denominator == 0)
+            throw new IllegalArgumentException();
+    	
+        int g = gcd(numerator, denominator);
+        int num = numerator/g;
+        int dem = denominator/g;
+        if ( denominator < 0 ){ num = -num; dem = Math.abs(dem);}
+		return new int[]{num, dem};
+
     }
 
     /**
@@ -49,7 +62,16 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     public SimplifiedRational(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	
+    	if(denominator == 0)
+			throw new IllegalArgumentException();
+
+    	if(numerator == 0)
+    		return;
+    	
+    	int[] simplifiedResult = simplify(numerator, denominator);
+    	this.num = simplifiedResult[0];
+    	this.dem = simplifiedResult[1];
     }
 
     /**
@@ -57,7 +79,7 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public int getNumerator() {
-        throw new NotImplementedException();
+        return this.num;
     }
 
     /**
@@ -65,7 +87,7 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public int getDenominator() {
-        throw new NotImplementedException();
+        return this.dem;
     }
 
     /**
@@ -81,18 +103,84 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public SimplifiedRational construct(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	SimplifiedRational simplifiedRational;
+    	 num = numerator;
+    	 dem = denominator;
+
+    	if(dem == 0)
+			throw new IllegalArgumentException();
+    	
+    	int[] simplifiedResult = simplify(num, dem);
+    	num = simplifiedResult[0];
+    	dem = simplifiedResult[1];
+  	
+    	simplifiedRational = new SimplifiedRational(num, dem);
+    	
+    	return simplifiedRational;
     }
+    
+    public SimplifiedRational negate() throws IllegalArgumentException{
+    	
+    	SimplifiedRational simplifiedRational = (SimplifiedRational) IRational.super.negate();
+    	return simplifiedRational;
+    }
+
+    public SimplifiedRational invert() throws IllegalArgumentException{
+    	
+    	SimplifiedRational simplifiedRational = (SimplifiedRational) IRational.super.invert();
+    	return simplifiedRational;
+    }
+
+    
+    public SimplifiedRational add(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+       	SimplifiedRational simplifiedRational = (SimplifiedRational) IRational.super.add(that);
+    	return simplifiedRational;
+    }
+    
+    public SimplifiedRational sub(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+       	SimplifiedRational simplifiedRational = (SimplifiedRational) IRational.super.sub(that);
+    	return simplifiedRational;
+    }
+    
+    public SimplifiedRational mul(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+       	SimplifiedRational simplifiedRational = (SimplifiedRational) IRational.super.mul(that);
+    	return simplifiedRational;
+    }
+
+    public SimplifiedRational div(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+    	if(dem == 0)
+			throw new IllegalArgumentException();
+       	
+       	SimplifiedRational simplifiedRational = (SimplifiedRational) IRational.super.div(that);
+    	return simplifiedRational;
+    }
+
 
     /**
      * @param obj the object to check this against for equality
-     * @return true if the given obj is a rational value and its
+     * @return true if the given ob j is a rational value and its
      * numerator and denominator are equal to this rational value's numerator and denominator,
      * false otherwise
      */
     @Override
     public boolean equals(Object obj) {
-        throw new NotImplementedException();
+        if (obj == null) return false;
+        if (obj.getClass() != this.getClass()) return false;
+        return obj instanceof SimplifiedRational
+                && ((SimplifiedRational)obj).num == num
+                && ((SimplifiedRational)obj).dem == dem;
     }
 
     /**
@@ -104,6 +192,13 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public String toString() {
-        throw new NotImplementedException();
+    	int n = this.getNumerator();
+        int d = this.getDenominator();
+    	
+        if (n < 0 != d < 0 ) 
+        	return (""+ (-1)*Math.abs(n) + "/" + Math.abs(d));        	
+        else        
+        	return (""+ Math.abs(n) + "/" + Math.abs(d));
+
     }
 }

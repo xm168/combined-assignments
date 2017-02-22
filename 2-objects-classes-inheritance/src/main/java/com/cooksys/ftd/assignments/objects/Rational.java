@@ -55,27 +55,60 @@ public class Rational implements IRational {
     @Override
     public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
     	
-    	if(denominator == 0)
+    	Rational rational;
+    	this.num = numerator;
+    	this.dem = denominator;
+
+    	if(dem == 0)
             throw new IllegalArgumentException();
+    	rational = new Rational(num, dem);
+    	return rational;
+    }
+    
+    public Rational negate() throws IllegalArgumentException{
     	
-        	
-            int g = gcd(numerator, denominator);
-            num = numerator/g;
-            dem = denominator/g;
-//            if ( denominator < 0 ) num = -num;
-			return new Rational(num, dem);
-   
-           }
-        	
-        private int gcd(int n, int d){
-            int r = n % d;
-            while (r != 0){
-            n = d;
-            d = r; 
-            r = n % d;
-            }
-			return d;
-        }
+    	Rational rational = (Rational) IRational.super.negate();
+    	return rational;
+    }
+
+    public Rational invert() throws IllegalArgumentException{
+    	
+    	Rational rational = (Rational) IRational.super.invert();
+    	return rational;
+    }
+
+    
+    public Rational add(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+    	Rational rational = (Rational) IRational.super.add(that);
+    	return rational;
+    }
+    
+    public Rational sub(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+    	Rational rational = (Rational) IRational.super.sub(that);
+    	return rational;
+    }
+    
+    public Rational mul(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+    	Rational rational = (Rational) IRational.super.mul(that);
+    	return rational;
+    }
+
+    public Rational div(IRational that) throws IllegalArgumentException{
+    	
+       	if(that == null)
+            throw new IllegalArgumentException();
+    	Rational rational = (Rational) IRational.super.div(that);
+    	return rational;
+    }
 
     /**
      * @param obj the object to check this against for equality
