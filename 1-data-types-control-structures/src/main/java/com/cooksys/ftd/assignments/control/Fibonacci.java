@@ -61,24 +61,16 @@ public class Fibonacci {
     	if(start < 0 || end < 0 || end < start)
         throw new IllegalArgumentException();
     	
-    	int size=100;
-    	
-    	int[] series = new int[size];
-    	series[0]=1;
-    	series[1]=1;
     	
     	int[] slices = new int[end-start];
          
-        for (int i = 2; i < size; i++) { 
-        	series[i] = series[i-1] + series[i-2];
-        	}
 
         if(start>=0 && end>=0 && end>start){
         	for (int j = start; j < end; j++) {
         		if(start<end){
         			
         		}
-        		slices[j-start] = series[j];
+        		slices[j-start] = atIndex(j);
             }
         }else if(start==0 && end==0) slices = new int[]{};
         
